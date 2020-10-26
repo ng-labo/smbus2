@@ -281,6 +281,12 @@ class SMBus(object):
         self.force = force
         self._force_last = None
 
+    def __del__(self):
+        """
+        Close i2c bus if opened when this object gets destroyed.
+        """
+        self.close()
+
     def __enter__(self):
         """Enter handler."""
         return self
